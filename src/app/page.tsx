@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-white to-gray-50 dark:from-neutral-950 dark:to-neutral-900">
