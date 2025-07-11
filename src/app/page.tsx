@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <div className="-mt-20 lg:-mt-28">
+      <div className="-mt-20 sm:-mt-14 lg:-mt-28">
         <HeroSection />
       </div>
 

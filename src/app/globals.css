@@ -15,6 +15,7 @@
   --animate-third: moveInCircle 40s linear infinite;
   --animate-fourth: moveHorizontal 40s ease infinite;
   --animate-fifth: moveInCircle 20s ease infinite;
+  --animate-slideIn: slideIn 0.4s ease-out forwards;
 }
  
   @keyframes moveHorizontal {
@@ -53,6 +54,53 @@
     }
   }
 
+/* Animaciones para el menú móvil */
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Clase de animación personalizada */
+.animate-slideIn {
+  animation: slideIn 0.4s ease-out forwards;
+}
+
+/* Animaciones para el ícono de scroll */
+@keyframes scrollBounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-8px);
+  }
+  60% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes scrollPulse {
+  0%, 100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-scrollBounce {
+  animation: scrollBounce 2s infinite;
+}
+
+.animate-scrollPulse {
+  animation: scrollPulse 1.5s infinite;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -68,6 +116,24 @@ body {
 
 /* Mejoras para móviles */
 @media (max-width: 768px) {
+  /* Eliminar líneas y bordes no deseados */
+  nav, header {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+  
+  /* Eliminar tap highlights */
+  * {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
   /* Mejores áreas de toque */
   button, a {
     min-height: 44px;
@@ -75,6 +141,8 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    border: none;
+    outline: none;
   }
   
   /* Prevenir zoom en inputs en iOS */
