@@ -23,7 +23,7 @@ export function HeroSection() {
         {/* Right column: Image */}
         <div className="flex items-center justify-center">
           <Image
-            src="/img-1.webp"
+            src="/img/img-1.webp"
             alt="Coalición Nacional"
             width={500}
             height={400}
