@@ -3,12 +3,13 @@
 import { useState, useEffect } from "react";
 import { IconMenu2, IconX } from "@tabler/icons-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const navigationItems = [
   { name: "Inicio", link: "/" },
-  { name: "Acerca de", link: "/about" },
-  { name: "Servicios", link: "/services" },
-  { name: "Contacto", link: "/contact" },
+  { name: "Acerca de", link: "#" },
+  { name: "Servicios", link: "#" },
+  { name: "Contacto", link: "#" },
 ];
 
 export default function SimpleNavbar() {
@@ -45,7 +46,7 @@ export default function SimpleNavbar() {
         <div className="flex items-center justify-between h-20 lg:h-28 py-2">
           {/* Logo izquierdo */}
           <div className="flex-shrink-0">
-            <a href="/" className="flex items-center transform hover:scale-105 transition-transform duration-200">
+            <Link href="/" className="flex items-center transform hover:scale-105 transition-transform duration-200">
               <Image
                 src="/logo.webp"
                 alt="Coalición Logo"
@@ -53,19 +54,19 @@ export default function SimpleNavbar() {
                 height={48}
                 className="h-12 lg:h-20 w-auto object-contain"
               />
-            </a>
+            </Link>
           </div>
 
           {/* Menú desktop */}
           <div className="hidden lg:flex lg:items-center lg:space-x-8">
             {navigationItems.map((item, index) => (
-              <a
+              <Link
                 key={index}
                 href={item.link}
                 className="text-sm font-medium transition-all duration-200 px-3 py-2 rounded-lg relative text-white hover:text-blue-200 hover:bg-white/10"
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
           </div>
 
@@ -113,14 +114,14 @@ export default function SimpleNavbar() {
       >
         <div className="px-4 pt-2 pb-6 space-y-1 bg-black/80 backdrop-blur-lg border-t border-white/20">
           {navigationItems.map((item, index) => (
-            <a
+            <Link
               key={index}
               href={item.link}
               onClick={closeMobileMenu}
               className="block px-4 py-3 text-base font-medium text-white hover:text-blue-200 hover:bg-white/10 rounded-lg transition-all duration-200"
             >
               {item.name}
-            </a>
+            </Link>
           ))}
         </div>
       </div>
