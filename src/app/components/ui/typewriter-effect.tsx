@@ -42,7 +42,7 @@ export const TypewriterEffect = ({
         }
       );
     }
-  }, [isInView, animate]);
+  }, [isInView]);
 
   const renderWords = () => {
     return (
@@ -182,6 +182,99 @@ export const TypewriterEffectSmooth = ({
           cursorClassName
         )}
       ></motion.span>
+    </div>
+  );
+};
+
+export const TypewriterEffectMobile = ({
+  words,
+  className,
+  cursorClassName,
+}: {
+  words: {
+    text: string;
+    className?: string;
+  }[];
+  className?: string;
+  cursorClassName?: string;
+}) => {
+  // Procesar palabras para manejar saltos de línea
+  const processedWords = words.map((word) => {
+    const lines = word.text.split("\n");
+    return {
+      ...word,
+      lines: lines.map((line) => line.split("")),
+    };
+  });
+
+  const renderWords = () => {
+    return (
+      <div className="flex flex-col items-center space-y-2">
+        {processedWords.map((word, wordIdx) => (
+          <div key={`word-${wordIdx}`} className="flex flex-col items-center">
+            {word.lines.map((line, lineIdx) => (
+              <div key={`line-${lineIdx}`} className="flex">
+                {line.map((char, charIdx) => (
+                  <span
+                    key={`char-${charIdx}`}
+                    className={cn(
+                      "dark:text-white text-white font-bold",
+                      word.className
+                    )}
+                  >
+                    {char}
+                  </span>
+                ))}
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    );
+  };
+
+  return (
+    <div className={cn("flex flex-col items-center my-4", className)}>
+      <motion.div
+        className="overflow-hidden"
+        initial={{
+          width: "0%",
+        }}
+        whileInView={{
+          width: "fit-content",
+        }}
+        transition={{
+          duration: 2.5,
+          ease: "linear",
+          delay: 0.5,
+        }}
+      >
+        <div
+          className="text-3xl font-bold text-center leading-tight"
+          style={{
+            whiteSpace: "nowrap",
+          }}
+        >
+          {renderWords()}
+        </div>
+      </motion.div>
+      <motion.span
+        initial={{
+          opacity: 0,
+        }}
+        animate={{
+          opacity: 1,
+        }}
+        transition={{
+          duration: 0.8,
+          repeat: Infinity,
+          repeatType: "reverse",
+        }}
+        className={cn(
+          "block rounded-sm w-[3px] h-8 bg-blue-500 mt-2",
+          cursorClassName
+        )}
+      />
     </div>
   );
 };

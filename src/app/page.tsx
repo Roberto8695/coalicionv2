@@ -1,5 +1,5 @@
 import { HeroSection } from "./components/layouts/hero-section";
-
+import { SliderLogos } from "./components/layouts/slider-logos";
 export default function Home() {
   return (
     <div className="min-h-screen bg-white">
@@ -7,7 +7,8 @@ export default function Home() {
       <div className="-mt-20 sm:-mt-14 lg:-mt-28">
         <HeroSection />
       </div>
-
+      {/* Slider Logos Section */}
+      <SliderLogos />
       {/* Features Section */}
       <section id="features" className="py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
