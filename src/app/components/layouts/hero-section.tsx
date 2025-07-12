@@ -2,7 +2,7 @@
 
 import React from "react";
 import { BackgroundGradientAnimation } from "../ui/background-gradient-animation";
-import { motion } from "motion/react";
+import { TypewriterEffectSmooth } from "../ui/typewriter-effect";
 import { LinkPreview } from "@/app/components/ui/link-preview";
 import { IconChevronDown } from "@tabler/icons-react";
 
@@ -16,24 +16,42 @@ export function HeroSection() {
       window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
     }
   };
-
+  const words = [
+    {
+      text: "Juntos",
+    },
+    {
+      text: "Contra",
+    },
+    {
+      text: "la",
+    },
+    
+    
+    {
+      text: "Desinformación",
+      className: "text-[#FFC44D] dark:text-[#FFC44D] ",
+    },
+    {
+      text: "Electoral",
+      className: "text-[#FFC44D] dark:text-[#FFC44D] ",
+    },
+  ];
   return (
     <div className="w-full overflow-hidden h-screen relative flex items-center justify-center">
       <BackgroundGradientAnimation containerClassName="h-full">
-        <div className="absolute z-50 inset-0 flex items-center justify-center w-full h-full px-4 pt-[150px] sm:pt-16 lg:pt-0">
+        <div className="absolute z-50 inset-0 flex items-center  justify-center w-full h-full px-4 pt-[150px] sm:pt-16 lg:pt-0">
           <div className="flex items-center justify-center max-w-4xl mx-auto w-full">
             <div className="backdrop-blur-md bg-black/40 p-6 sm:p-8 rounded-xl border border-white/10 text-center">
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 bg-clip-text drop-shadow-2xl bg-gradient-to-b from-white/80 to-white/20">
-                Juntos Contra la{" "}
-                <span className="text-[#FFC44D]">Desinformación Electoral</span>
+                <TypewriterEffectSmooth words={words} />
               </h1>
               <div className="text-sm sm:text-base md:text-lg lg:text-xl font-normal text-white mb-3 sm:mb-4">
-                Coalición Nacional que reúne a
-                <LinkPreview
-                  url="https://coalicion.vercel.app/"
-                  className="font-bold text-[#FFC44D]"
-                >
-                  17 organizaciones
+                Coalición Nacional que reúne a {" "}
+                <LinkPreview 
+                  url="https://www.undp.org/"
+                  className="font-bold text-amber-300 "
+                > <span className="font-bold text-amber-300 ">17 organizaciones</span>
                 </LinkPreview>{" "}
                 comprometidas con la integridad de la información electoral en
                 Bolivia
@@ -47,7 +65,8 @@ export function HeroSection() {
                   url="https://chequeatuvoto.chequeabolivia.bo/"
                   className="font-bold text-[#FFC44D]"
                 >
-                  elecciones generales 2025.
+                  <span className="font-bold text-[#FFC44D] ">elecciones generales 2025.</span>
+                  
                 </LinkPreview>
               </div>
             </div>

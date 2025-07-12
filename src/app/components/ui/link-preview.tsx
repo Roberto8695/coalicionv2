@@ -1,5 +1,6 @@
 "use client";
 import * as HoverCardPrimitive from "@radix-ui/react-hover-card";
+import Image from "next/image";
 
 import { encode } from "qss";
 import React from "react";
@@ -36,6 +37,10 @@ export const LinkPreview = ({
   isStatic = false,
   imageSrc = "",
 }: LinkPreviewProps) => {
+  // Evitar advertencias de variables no utilizadas
+  void quality;
+  void layout;
+  
   let src;
   if (!isStatic) {
     const params = encode({
@@ -67,8 +72,11 @@ export const LinkPreview = ({
 
   const translateX = useSpring(x, springConfig);
 
-  const handleMouseMove = (event: any) => {
-    const targetRect = event.target.getBoundingClientRect();
+  const handleMouseMove = (event: React.MouseEvent<HTMLElement>) => {
+    const target = event.target as HTMLElement;
+    if (!target) return;
+    
+    const targetRect = target.getBoundingClientRect();
     const eventOffsetX = event.clientX - targetRect.left;
     const offsetFromCenter = (eventOffsetX - targetRect.width / 2) / 2; // Reduce the effect to make it subtle
     x.set(offsetFromCenter);
@@ -78,7 +86,7 @@ export const LinkPreview = ({
     <>
       {isMounted ? (
         <div className="hidden">
-          <img
+          <Image
             src={src}
             width={width}
             height={height}
