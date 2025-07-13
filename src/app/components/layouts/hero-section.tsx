@@ -20,7 +20,7 @@ export function HeroSection() {
   return (
     <div className="w-full overflow-hidden h-screen relative flex items-center justify-center">
       <BackgroundGradientAnimation containerClassName="h-full">
-        <div className="absolute z-50 inset-0 flex items-center  justify-center w-full h-full px-4 pt-[150px] sm:pt-16 lg:pt-0">
+        <div className="absolute z-50 inset-0 flex items-center  justify-center w-full h-full px-4 pt-[10px] sm:pt-16 lg:pt-0">
           <div className="flex items-center justify-center max-w-4xl mx-auto w-full">
             <div className="backdrop-blur-md bg-black/40 p-6 sm:p-8 rounded-xl border border-white/10 text-center">
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 bg-clip-text drop-shadow-2xl bg-gradient-to-b from-white/80 to-white/20 text-center">

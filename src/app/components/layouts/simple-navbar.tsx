@@ -47,7 +47,7 @@ export default function SimpleNavbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-500 transition-all duration-500 ease-in-out ${
+      className={`fixed top-0 left-0 right-0 z-500 transition-all py-2 sm:py-2 lg:py-0 duration-500 ease-in-out ${
         isScrolled
           ? "bg-[#063740]/80 backdrop-blur-md shadow-lg border-b border-white/10"
           : "bg-[#063740]/60 backdrop-blur-sm border-b border-white/5"
@@ -68,7 +68,7 @@ export default function SimpleNavbar() {
                 alt="Coalición Logo"
                 width={80}
                 height={48}
-                className="h-8 sm:h-15 lg:h-20 w-auto object-contain"
+                className="h-15 sm:h-15 lg:h-20 w-auto object-contain"
               />
             </Link>
           </div>
@@ -100,7 +100,7 @@ export default function SimpleNavbar() {
                 alt="PNUD Logo"
                 width={45}
                 height={60}
-                className="h-8 sm:h-15 lg:h-20 w-auto object-contain"
+                className="h-15 sm:h-15 lg:h-20 w-auto object-contain"
               />
             </a>
 
