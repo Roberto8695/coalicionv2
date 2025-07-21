@@ -73,7 +73,10 @@ export default function SimpleNavbar() {
             </Link>
           </div>
 
-          {/* Menú desktop */}
+          {/* Espaciador flexible */}
+          <div className="flex-1"></div>
+
+          {/* Menú desktop en el lado derecho */}
           <div className="hidden lg:flex lg:items-center lg:space-x-8">
             {navigationItems.map((item, index) => (
               <Link
@@ -86,39 +89,20 @@ export default function SimpleNavbar() {
             ))}
           </div>
 
-          {/* Logo derecho */}
-          <div className="flex items-center space-x-2 sm:space-x-4">
-            <a
-              href="https://www.undp.org"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center hover:opacity-80 transform hover:scale-105 transition-all duration-200"
-              title="Programa de las Naciones Unidas para el Desarrollo"
-            >
-              <Image
-                src="/pnud.png"
-                alt="PNUD Logo"
-                width={45}
-                height={60}
-                className="h-8 sm:h-15 lg:h-20 w-auto object-contain"
-              />
-            </a>
-
-            {/* Botón hamburguesa para móvil */}
-            <button
-              onClick={toggleMobileMenu}
-              className="lg:hidden p-1.5 sm:p-2 rounded-lg transition-all duration-200 text-white hover:bg-white/10 transform hover:scale-110 active:scale-95"
-              aria-label={isMobileMenuOpen ? "Cerrar menú" : "Abrir menú"}
-            >
-              <div className="relative">
-                {isMobileMenuOpen ? (
-                  <IconX className="h-5 w-5 sm:h-6 sm:w-6 transition-all duration-300 rotate-180" />
-                ) : (
-                  <IconMenu2 className="h-5 w-5 sm:h-6 sm:w-6 transition-all duration-300 rotate-0" />
-                )}
-              </div>
-            </button>
-          </div>
+          {/* Botón hamburguesa para móvil */}
+          <button
+            onClick={toggleMobileMenu}
+            className="lg:hidden p-1.5 sm:p-2 rounded-lg transition-all duration-200 text-white hover:bg-white/10 transform hover:scale-110 active:scale-95 ml-2 sm:ml-4"
+            aria-label={isMobileMenuOpen ? "Cerrar menú" : "Abrir menú"}
+          >
+            <div className="relative">
+              {isMobileMenuOpen ? (
+                <IconX className="h-5 w-5 sm:h-6 sm:w-6 transition-all duration-300 rotate-180" />
+              ) : (
+                <IconMenu2 className="h-5 w-5 sm:h-6 sm:w-6 transition-all duration-300 rotate-0" />
+              )}
+            </div>
+          </button>
         </div>
       </div>
 

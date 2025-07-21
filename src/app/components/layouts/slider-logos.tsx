@@ -71,20 +71,7 @@ export function SliderLogos() {
         </div>
 
         {/* Estadísticas */}
-        <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
-          <div className="bg-white/50 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-            <div className="text-3xl font-bold text-gray-900 mb-2">17</div>
-            <div className="text-gray-600">Organizaciones</div>
-          </div>
-          <div className="bg-white/50 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-            <div className="text-3xl font-bold text-gray-900 mb-2">+10</div>
-            <div className="text-gray-600">Años de experiencia</div>
-          </div>
-          <div className="bg-white/50 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-            <div className="text-3xl font-bold text-gray-900 mb-2">2025</div>
-            <div className="text-gray-600">Elecciones</div>
-          </div>
-        </div>
+        
       </div>
     </div>
   );
