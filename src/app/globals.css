@@ -162,54 +162,6 @@ body {
   }
 }
 
-/* Typewriter Effect Styles */
-.typewriter-container {
-  display: inline-block;
-  width: 100%;
-}
-
-.typewriter-wrapper {
-  display: inline-block;
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-  color: inherit;
-  line-height: inherit;
-  text-align: center;
-}
-
-.typewriter-cursor {
-  display: inline-block;
-  vertical-align: top;
-  font-size: inherit;
-  line-height: inherit;
-  margin-left: 2px;
-  animation: typewriter-blink 1s infinite;
-}
-
-@keyframes typewriter-blink {
-  0%, 50% {
-    opacity: 1;
-  }
-  51%, 100% {
-    opacity: 0;
-  }
-}
-
-/* Responsive adjustments for typewriter */
-@media (max-width: 640px) {
-  .typewriter-container {
-    font-size: 0.9em;
-    line-height: 1.2;
-  }
-}
-
-@media (max-width: 480px) {
-  .typewriter-container {
-    font-size: 0.8em;
-    line-height: 1.1;
-  }
-}
 
 /* Hero Section Green Mask Styles */
 .hero-green-mask {
@@ -262,7 +214,7 @@ body {
 .logos-slider-infinite {
   display: flex;
   width: calc(300% + 60px); /* Ancho triplicado para seamless loop perfecto */
-  animation: slide-infinite-seamless 60s linear infinite;
+  animation: slide-infinite-seamless 35s linear infinite;
 }
 
 .logo-item {
@@ -379,6 +331,4 @@ body {
   pointer-events: none;
 }
 
-/* ...existing code... */
 
-/* ...existing code... */
