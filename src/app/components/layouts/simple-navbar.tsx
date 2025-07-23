@@ -6,15 +6,64 @@ import Image from "next/image";
 import Link from "next/link";
 
 const navigationItems = [
-  { name: "Inicio", link: "/" },
-  { name: "Acerca de", link: "#" },
-  { name: "Servicios", link: "#" },
-  { name: "Contacto", link: "#" },
+ 
+  { name: "Quienes Somos", link: "#about", isContacto: false, isScroll: true },
+  { name: "Miembros", link: "#members", isContacto: false, isScroll: true },
+  { name: "Actividades", link: "#activities", isContacto: false, isScroll: true },
+  { name: "Contacto", link: "#", isContacto: true, isScroll: false },
 ];
 
-export default function SimpleNavbar() {
+interface SimpleNavbarProps {
+  onContactClick?: () => void;
+}
+
+export default function SimpleNavbar({ onContactClick }: SimpleNavbarProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      // Obtener la altura real del navbar dinámicamente
+      const navbar = document.querySelector('nav');
+      let navbarHeight = 80; // fallback
+      
+      if (navbar) {
+        navbarHeight = navbar.getBoundingClientRect().height;
+      }
+      
+      // Usar un offset más grande negativo para mostrar más contenido hacia abajo
+      const additionalOffset = -60; // Aumentado para mostrar más contenido abajo
+      const totalOffset = navbarHeight + additionalOffset;
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset - totalOffset;
+      
+      window.scrollTo({
+        top: Math.max(0, elementPosition),
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleNavClick = (e: React.MouseEvent, item: typeof navigationItems[0]) => {
+    e.preventDefault();
+    
+    if (item.isContacto && onContactClick) {
+      onContactClick();
+    } else if (item.isScroll) {
+      if (item.link === "#home") {
+        scrollToTop();
+      } else {
+        const sectionId = item.link.substring(1); // remove '#' from link
+        scrollToSection(sectionId);
+      }
+    }
+    
+    closeMobileMenu();
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -64,11 +113,11 @@ export default function SimpleNavbar() {
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center transform hover:scale-105 transition-transform duration-200">
               <Image
-                src="/logo.webp"
-                alt="Coalición Logo"
-                width={80}
-                height={48}
-                className="h-8 sm:h-15 lg:h-20 w-auto object-contain"
+                src="/inicial/logo-fotter.png"
+                alt="FACTO - Coalición Nacional Contra la Desinformación Electoral"
+                width={140}
+                height={40}
+                className="h-12 sm:h-16 lg:h-14 w-auto object-contain"
               />
             </Link>
           </div>
@@ -82,9 +131,14 @@ export default function SimpleNavbar() {
               <Link
                 key={index}
                 href={item.link}
-                className="text-sm lg:text-sm font-medium lg:font-bold transition-all duration-200 px-2 lg:px-3 py-2 rounded-lg relative text-white hover:text-blue-200 hover:bg-white/20 backdrop-blur-sm"
+                onClick={(e) => handleNavClick(e, item)}
+                className="group relative   text-sm lg:text-base  lg:font-light  transition-all duration-300 px-2 py-2 text-white hover:text-emerald-300 transform hover:scale-105"
               >
-                {item.name}
+                <span className="relative z-10">{item.name}</span>
+                {/* Línea animada debajo */}
+                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-emerald-400 to-teal-400 transition-all duration-300 group-hover:w-full"></div>
+                {/* Efecto de brillo sutil */}
+                
               </Link>
             ))}
           </div>
@@ -122,13 +176,13 @@ export default function SimpleNavbar() {
         />
         
         {/* Contenido del menú */}
-        <div className="relative px-4 pt-4 pb-6 space-y-2 shadow-lg z-10">
+        <div className="relative px-4 pt-4 pb-6 space-y-3 shadow-lg z-10">
           {navigationItems.map((item, index) => (
             <Link
               key={index}
               href={item.link}
-              onClick={closeMobileMenu}
-              className={`flex items-center justify-center w-full px-4 py-3 text-base font-medium text-white hover:text-blue-200 hover:bg-white/10 rounded-lg transition-all duration-300 transform hover:scale-105 ${
+              onClick={(e) => handleNavClick(e, item)}
+              className={`group relative flex items-center justify-center w-full px-4 py-3 text-base font-medium text-white hover:text-emerald-300 transition-all duration-300 transform hover:scale-105 ${
                 isMobileMenuOpen 
                   ? `animate-slideIn animation-delay-${index * 100}` 
                   : ''
@@ -137,7 +191,13 @@ export default function SimpleNavbar() {
                 animationDelay: `${index * 100}ms`
               }}
             >
-              {item.name}
+              <span className="relative z-10">{item.name}</span>
+              {/* Línea animada lateral */}
+              <div className="absolute left-4 top-1/2 w-0 h-0.5 bg-gradient-to-r from-emerald-400 to-teal-400 transition-all duration-300 group-hover:w-8 transform -translate-y-1/2"></div>
+              {/* Línea animada derecha */}
+              <div className="absolute right-4 top-1/2 w-0 h-0.5 bg-gradient-to-l from-emerald-400 to-teal-400 transition-all duration-300 group-hover:w-8 transform -translate-y-1/2"></div>
+              {/* Efecto de brillo sutil */}
+              <div className="absolute inset-0 rounded-lg opacity-0 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 transition-opacity duration-300 group-hover:opacity-100"></div>
             </Link>
           ))}
         </div>
